@@ -1,0 +1,7 @@
+D:\Users\user\VS Workspaces\ConsoleAppPractice\ConsoleAppPractice\bin\Debug\ConsoleAppPractice.exe.config
+D:\Users\user\VS Workspaces\ConsoleAppPractice\ConsoleAppPractice\bin\Debug\ConsoleAppPractice.exe
+D:\Users\user\VS Workspaces\ConsoleAppPractice\ConsoleAppPractice\bin\Debug\ConsoleAppPractice.pdb
+D:\Users\user\VS Workspaces\ConsoleAppPractice\ConsoleAppPractice\obj\Debug\ConsoleAppPractice.csprojAssemblyReference.cache
+D:\Users\user\VS Workspaces\ConsoleAppPractice\ConsoleAppPractice\obj\Debug\ConsoleAppPractice.csproj.CoreCompileInputs.cache
+D:\Users\user\VS Workspaces\ConsoleAppPractice\ConsoleAppPractice\obj\Debug\ConsoleAppPractice.exe
+D:\Users\user\VS Workspaces\ConsoleAppPractice\ConsoleAppPractice\obj\Debug\ConsoleAppPractice.pdb
