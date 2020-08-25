@@ -6,19 +6,10 @@ namespace ConsoleAppPractice.Extensions
 {
     public static class DigitExtension
     {
-        //////////////
-        // public static string ToLimitCredit<T>(this T val)
-        // {
-        //     if (typeof(T) == typeof(int))
-        //     {
-        //     }
-        //     return "";
-        // }
-
-        //////////////
-        public static string ToLimitCredit(this long val, long limit = 999999999)
+        public static string ToLimitCredit<T>(this T val, long limit = 1000000000)
         {
-            return (val > limit) ? val.ToShorterFloorNumber() : val.ToCredit();
+            var convertedValue = Convert.ToInt64(val);
+            return (convertedValue < limit) ? convertedValue.ToShorterFloorNumber() : convertedValue.ToCredit();
         }
 
         public static string ToShorterFloorNumber(this long val)
@@ -41,7 +32,7 @@ namespace ConsoleAppPractice.Extensions
             return val.ToCredit();
         }
 
-        public static string ToCredit(this long val)
+        public static string ToCredit<T>(this T val)
         {
             return $"{val:N0}"; // or use this: return val.ToString("N0");
         }

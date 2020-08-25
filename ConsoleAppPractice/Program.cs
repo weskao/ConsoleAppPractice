@@ -9,16 +9,21 @@ namespace ConsoleAppPractice
         private static void Main(string[] args)
         {
             var numberArrayLong = new long[] { 1, 999999999, 1000000000, 1200000000, (long)Math.Pow(10, 12), (long)Math.Pow(10, 12) + 12345 };
-            var numberArrayInt = new int[] { 1, 999999999, 1000000000, 1200000000 };
+            var numberArrayInt = new int[] { 1, 999999999, 1000000000, 1200000000, (int)Math.Pow(10, 12), (int)Math.Pow(10, 12) + 12345 };
             var numberArrayString = new string[] { "2", "999999999", "1000000000", "1200000000" };
 
             PrintArray(numberArrayLong);
-            // PrintArray(numberArrayInt);
-            // PrintArray(numberArrayString);
+            PrintArray(numberArrayInt);
+            PrintArray(numberArrayString);
+
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
         }
 
         private static void PrintArray<T>(T[] numberArray)
         {
+            Console.WriteLine($"Current array type = {typeof(T)}[]");
+
             foreach (var number in numberArray)
             {
                 IConvertible newNumber = null;
@@ -26,7 +31,7 @@ namespace ConsoleAppPractice
                 if (typeof(T) == typeof(int))
                 {
                     newNumber = Convert.ToInt32(number);
-                    // Console.WriteLine(((int) newNumber).ToLimitCredit());
+                    Console.WriteLine(((int)newNumber).ToLimitCredit());
                 }
                 else if (typeof(T) == typeof(long))
                 {
@@ -39,7 +44,7 @@ namespace ConsoleAppPractice
                 }
             }
 
-            Console.ReadKey();
+            Console.WriteLine("=============");
         }
     }
 }
