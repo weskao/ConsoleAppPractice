@@ -12,6 +12,9 @@ namespace ConsoleAppPractice
             var numberArrayInt = new int[] { 1, 999999999, 1000000000, 1200000000, (int)Math.Pow(10, 12), (int)Math.Pow(10, 12) + 12345 };
             var numberArrayString = new string[] { "2", "999999999", "1000000000", "1200000000" };
 
+            // "123".ToLimitCredit()
+            // 123.ToLimitCreditNew()
+
             PrintArray(numberArrayLong);
             PrintArray(numberArrayInt);
             PrintArray(numberArrayString);
