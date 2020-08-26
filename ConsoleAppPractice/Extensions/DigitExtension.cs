@@ -6,6 +6,17 @@ namespace ConsoleAppPractice.Extensions
 {
     public static class DigitExtension
     {
+        public static string ToLimitCreditNew<T>(this T val, long limit = 1000000000) where T : struct
+        {
+            if (typeof(T) == typeof(int) || typeof(T) == typeof(long))
+            {
+                var convertedValue = Convert.ToInt64(val);
+                return (convertedValue < limit) ? convertedValue.ToShorterFloorNumber() : convertedValue.ToCredit();
+            }
+
+            return "";
+        }
+
         public static string ToLimitCredit<T>(this T val, long limit = 1000000000)
         {
             var convertedValue = Convert.ToInt64(val);

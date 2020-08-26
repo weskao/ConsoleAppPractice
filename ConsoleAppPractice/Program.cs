@@ -47,4 +47,28 @@ namespace ConsoleAppPractice
             Console.WriteLine("=============");
         }
     }
+
+    public class MyNewClass
+    {
+        private string _convertedNumber => 5.ToLimitCreditNew();
+    }
+
+    public class MyClass
+    {
+        private readonly long _intNumber = 5;
+        private readonly long _longNumber = 999;
+        private string ConvertedIntNumber => _intNumber.ToLimitCreditNew();
+        private string ConvertedLongNumber => _longNumber.ToLimitCreditNew();
+
+        public void MyMethod()
+        {
+            var testString = new MyStruct().ToLimitCreditNew();
+            Console.WriteLine(testString);
+        }
+    }
+
+    public struct MyStruct
+    {
+        public string name;
+    }
 }
