@@ -6,7 +6,7 @@ namespace ConsoleAppPractice.Extensions
 {
     public static class DigitExtension
     {
-        public static string ToLimitCreditNew<T>(this T val, long limit = 999999) where T : struct
+        public static string ToLimitCreditNew<T>(this T val, long limit = 99999) where T : struct
         {
             // Need to support these type
             // if ((typeof(T) == typeof(double) ||
@@ -29,7 +29,7 @@ namespace ConsoleAppPractice.Extensions
             return "";
         }
 
-        public static string ToLimitCredit<T>(this T val, long limit = 999999999)
+        public static string ToLimitCredit<T>(this T val, long limit = 99999)
         {
             var convertedValue = Convert.ToInt64(val);
             return (convertedValue > limit) ? convertedValue.ToShorterFloorNumber() : convertedValue.ToCredit();
