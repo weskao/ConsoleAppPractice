@@ -12,9 +12,12 @@ namespace ConsoleAppPractice
             var numberArrayInt = new int[] { 1, 999999999, 1000000000, 1200000000, (int)Math.Pow(10, 12), (int)Math.Pow(10, 12) + 12345 };
             var numberArrayString = new string[] { "2", "999999999", "1000000000", "1200000000" };
 
-            // "123".ToLimitCredit()
+            // "123".ToLimitCreditNew()
             // 123.ToLimitCreditNew()
 
+            // Console.WriteLine(new MyStruct().ToLimitCreditNew());
+
+            //
             PrintArray(numberArrayLong);
             PrintArray(numberArrayInt);
             PrintArray(numberArrayString);
@@ -34,12 +37,12 @@ namespace ConsoleAppPractice
                 if (typeof(T) == typeof(int))
                 {
                     newNumber = Convert.ToInt32(number);
-                    Console.WriteLine(((int)newNumber).ToLimitCredit());
+                    Console.WriteLine(((int)newNumber).ToLimitCreditNew(999999999));
                 }
                 else if (typeof(T) == typeof(long))
                 {
                     newNumber = Convert.ToInt64(number);
-                    Console.WriteLine(((long)newNumber).ToLimitCredit());
+                    Console.WriteLine(((long)newNumber).ToLimitCreditNew(999999999));
                 }
                 else
                 {

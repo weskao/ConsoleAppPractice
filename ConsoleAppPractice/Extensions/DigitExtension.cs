@@ -6,21 +6,33 @@ namespace ConsoleAppPractice.Extensions
 {
     public static class DigitExtension
     {
-        public static string ToLimitCreditNew<T>(this T val, long limit = 1000000000) where T : struct
+        public static string ToLimitCreditNew<T>(this T val, long limit = 999999) where T : struct
         {
+            // Need to support these type
+            // if ((typeof(T) == typeof(double) ||
+            //      typeof(T) == typeof(int) ||
+            //      typeof(T) == typeof(float) ||
+            //      typeof(T) == typeof(decimal) ||
+            //      typeof(T) == typeof(long)))
+            // {
+            //     return $"{val:N0}"; // or use this: return val.ToString("N0");
+            // }
+            //
+            // return "";
+
             if (typeof(T) == typeof(int) || typeof(T) == typeof(long))
             {
                 var convertedValue = Convert.ToInt64(val);
-                return (convertedValue < limit) ? convertedValue.ToShorterFloorNumber() : convertedValue.ToCredit();
+                return (convertedValue > limit) ? convertedValue.ToShorterFloorNumber() : convertedValue.ToCredit();
             }
 
             return "";
         }
 
-        public static string ToLimitCredit<T>(this T val, long limit = 1000000000)
+        public static string ToLimitCredit<T>(this T val, long limit = 999999999)
         {
             var convertedValue = Convert.ToInt64(val);
-            return (convertedValue < limit) ? convertedValue.ToShorterFloorNumber() : convertedValue.ToCredit();
+            return (convertedValue > limit) ? convertedValue.ToShorterFloorNumber() : convertedValue.ToCredit();
         }
 
         public static string ToShorterFloorNumber(this long val)
@@ -43,9 +55,16 @@ namespace ConsoleAppPractice.Extensions
             return val.ToCredit();
         }
 
-        public static string ToCredit<T>(this T val)
+        public static string ToCredit<T>(this T val) where T : struct
         {
-            return $"{val:N0}"; // or use this: return val.ToString("N0");
+            if (typeof(T) == typeof(int) || typeof(T) == typeof(long))
+            {
+                return $"{val:N0}"; // or use this: return val.ToString("N0");
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }
