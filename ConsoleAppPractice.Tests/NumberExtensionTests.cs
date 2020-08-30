@@ -71,6 +71,38 @@ namespace ConsoleAppPractice.Tests
             ConvertedResultShouldBe("9,999");
         }
 
+        [Test]
+        public void NumberLengthEqualLimitLengthMaxDigitSingIsM_ReturnFullValue()
+        {
+            GivenNumber(99999);
+            GivenLimit(5, DigitSign.M);
+            ConvertedResultShouldBe("99,999");
+        }
+
+        [Test]
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsM_Case1_ReturnAbbreviationValueWithK()
+        {
+            GivenNumber(199999);
+            GivenLimit(5, DigitSign.M);
+            ConvertedResultShouldBe("199K");
+        }
+
+        [Test]
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsM_Case2_ReturnAbbreviationValueWithK()
+        {
+            GivenNumber(1234567);
+            GivenLimit(5, DigitSign.M);
+            ConvertedResultShouldBe("1,234K");
+        }
+
+        [Test]
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsM_ReturnAbbreviationValueWithK()
+        {
+            GivenNumber(12345678);
+            GivenLimit(5, DigitSign.M);
+            ConvertedResultShouldBe("12,345K");
+        }
+
         #endregion Limit length: 5, Max digit sign: M
 
         #region #region Limit length: 9, Max digit sign: B
