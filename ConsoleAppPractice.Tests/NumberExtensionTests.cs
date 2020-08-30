@@ -9,16 +9,74 @@ namespace ConsoleAppPractice.Tests
         private string _convertedResult;
         private long _number;
 
+        #region Limit length: 5, Max digit sign: K
+
         [Test]
-        public void NumberLengthEqualLimitLength_ReturnToCreditValue()
+        public void NumberLengthLessThanLimitLength_ReturnFullValue()
         {
-            GivenNumber(123456789);
-            GivenLimit(9, DigitSign.B);
-            ConvertedResultShouldBe("123,456,789");
+            GivenNumber(9999);
+            GivenLimit(5, DigitSign.K);
+            ConvertedResultShouldBe("9,999");
         }
 
         [Test]
-        public void NumberLengthEqualLimitLength_ReturnAbbreviationValue()
+        public void NumberLengthEqualLimitLength_ReturnFullValue()
+        {
+            GivenNumber(99999);
+            GivenLimit(5, DigitSign.K);
+            ConvertedResultShouldBe("99,999");
+        }
+
+        [Test]
+        public void NumberLengthGreaterThanLimitLength_Case1_ReturnAbbreviationValueWithK()
+        {
+            GivenNumber(199999);
+            GivenLimit(5, DigitSign.K);
+            ConvertedResultShouldBe("199K");
+        }
+
+        [Test]
+        public void NumberLengthGreaterThanLimitLength_Case2_ReturnAbbreviationValueWithK()
+        {
+            GivenNumber(1234567);
+            GivenLimit(5, DigitSign.K);
+            ConvertedResultShouldBe("1,234K");
+        }
+
+        [Test]
+        public void NumberLengthGreaterThanLimitLength_ReturnAbbreviationValueWithK()
+        {
+            GivenNumber(12345678);
+            GivenLimit(5, DigitSign.K);
+            ConvertedResultShouldBe("12,345K");
+        }
+
+        [Test]
+        public void NumberLengthOverLimitLengthAgain_AlwaysReturnK()
+        {
+            GivenNumber(123456789);
+            GivenLimit(5, DigitSign.K);
+            ConvertedResultShouldBe("123,456K");
+        }
+
+        #endregion Limit length: 5, Max digit sign: K
+
+        #region Limit length: 5, Max digit sign: M
+
+        [Test]
+        public void NumberLengthLessThanLimitLengthMaxDigitSingIsM_ReturnFullValue()
+        {
+            GivenNumber(9999);
+            GivenLimit(5, DigitSign.M);
+            ConvertedResultShouldBe("9,999");
+        }
+
+        #endregion Limit length: 5, Max digit sign: M
+
+        #region #region Limit length: 9, Max digit sign: B
+
+        [Test]
+        public void NumberLengthEqualLimitLength_ReturnToFullValue()
         {
             GivenNumber(123456789);
             GivenLimit(9, DigitSign.M);
@@ -48,6 +106,8 @@ namespace ConsoleAppPractice.Tests
             GivenLimit(9, DigitSign.B);
             ConvertedResultShouldBe("1,234,567B");
         }
+
+        #endregion #region Limit length: 9, Max digit sign: B
 
         private void GivenNumber<T>(T number)
         {
