@@ -103,6 +103,14 @@ namespace ConsoleAppPractice.Tests
             ConvertedResultShouldBe("12,345K");
         }
 
+        [Test]
+        public void NumberLengthOverLimitLengthThirdTimeMaxDigitSingIsM_ReturnAbbreviationValueWithM()
+        {
+            GivenNumber(123456789);
+            GivenLimit(5, DigitSign.M);
+            ConvertedResultShouldBe("123M");
+        }
+
         #endregion Limit length: 5, Max digit sign: M
 
         #region #region Limit length: 9, Max digit sign: B

@@ -28,11 +28,11 @@ namespace ConsoleAppPractice.TestCaseThree.Extension_code_by_Alomar
             Parameters parameters;
             ShortDigit.GetParameters(val, shortDigitAlomarDigitType, out parameters);
 
-            var limit = Convert.ToInt64(Math.Pow(10, parameters.shortDigit));
+            var maxDigitSingValue = Convert.ToInt64(Math.Pow(10, parameters.shortDigit));
 
-            if (val >= limit)
+            if (val >= maxDigitSingValue)
             {
-                return string.Format("{0}{1}", (val / limit).ToCredit(), parameters.sign);
+                return string.Format("{0}{1}", (val / maxDigitSingValue).ToCredit(), parameters.sign);
             }
 
             return val.ToCredit();

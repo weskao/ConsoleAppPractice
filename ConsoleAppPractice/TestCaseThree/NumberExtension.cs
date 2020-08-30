@@ -17,13 +17,11 @@ namespace ConsoleAppPractice.TestCaseThree
 
                 return (convertedValue >= limit) ? convertedValue.ToShorterFloorNumber(limitDigitLength, maxDigitSign, isOrderByAsc) : convertedValue.ToCredit();
             }
-            else
-            {
-                // Debug.LogWarning(string.Format("This type {0} is not support for {1} extension method", typeof(T),
-                //     System.Reflection.MethodBase.GetCurrentMethod()));
 
-                return "";
-            }
+            // Debug.LogWarning(string.Format("This type {0} is not support for {1} extension method", typeof(T),
+            //     System.Reflection.MethodBase.GetCurrentMethod()));
+
+            return "";
         }
 
         private static string ToShorterFloorNumber(this long val, int limitDigitLength, DigitSign maxDigitSign, bool isOrderByAsc)
@@ -36,6 +34,38 @@ namespace ConsoleAppPractice.TestCaseThree
                 new DigitMapping(){Sign = DigitSign.M, DigitLength = 6},
                 new DigitMapping(){Sign = DigitSign.K, DigitLength = 3}
             };
+
+            var minDigitMapping = digitMappings.Where(x =>
+            {
+                var lengthLoweThanMaxDigitSign = x.DigitLength <= (int)maxDigitSign;
+                return (valueLength - x.DigitLength) <= limitDigitLength && lengthLoweThanMaxDigitSign;
+            }).Aggregate((biggerDigitMapping, smallerDigitMapping) => (biggerDigitMapping.DigitLength > smallerDigitMapping.DigitLength ? smallerDigitMapping : null)); ;
+
+            if (minDigitMapping != null)
+            {
+                var divisor = (long)Math.Pow(10, minDigitMapping.DigitLength);
+
+                return string.Format("{0}{1}", (val / divisor).ToCredit(), minDigitMapping.Sign);
+            }
+            else
+            {
+                return val.ToCredit();
+            }
+
+            // var minDigitMapping =
+            //     digitMappings.Where(x => x.DigitLength <= (int)maxDigitSign)
+            //     .
+            //
+            // {
+            //     var lengthLoweThanMaxDigitSign = x.DigitLength <= (int)maxDigitSign;
+            //     return (valueLength - x.DigitLength) <= limitDigitLength && lengthLoweThanMaxDigitSign;
+            //
+            // })?.Aggregate((biggerDigitMapping, smallerDigitMapping) => (biggerDigitMapping.DigitLength > smallerDigitMapping.DigitLength ? smallerDigitMapping : null)); ;
+
+            // var minDigitMapping = digitMappings.Aggregate((biggerDigitMapping, smallerDigitMapping) =>
+            //     ((valueLength - smallerDigitMapping.DigitLength) <= limitDigitLength
+            //      && smallerDigitMapping.DigitLength <= (int)maxDigitSign
+            //      && biggerDigitMapping.DigitLength > smallerDigitMapping.DigitLength ? smallerDigitMapping : null));
 
             // var max = digitMappings.Max(x => valueLength >= x.DigitLength);
             // var maxMapping = digitMappings.FirstOrDefault(x => valueLength >= x.DigitLength && valueLength >= limitDigitLength);
@@ -144,12 +174,12 @@ namespace ConsoleAppPractice.TestCaseThree
             return digitFormatList.Where(x => (int)x.Sign <= (int)maxDigitSign).OrderBy(x => isOrderByAsc ? x.Value : 0);
         }
 
+        #region Previous version
+
         public static string ToCredit(this long number)
         {
             return string.Format("{0:N0}", number); // 1,002,395,000
         }
-
-        #region Previous version
 
         public static string ToLimitCredit<T>(this T val, int limitDigitLength = 9, int minDigitLength = 6,
             DigitSign maxDigitSign = DigitSign.B, bool isOrderByAsc = false) where T : struct
