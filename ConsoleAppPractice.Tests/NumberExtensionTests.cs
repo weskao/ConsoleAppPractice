@@ -5,17 +5,30 @@ namespace ConsoleAppPractice.Tests
 {
     public class NumberExtensionTests
     {
+        private string _convertedResult;
+        private int _number;
+
         [Test]
-        public void TestMethod()
+        public void NumberLengthEqualLimitLength_ReturnToCreditValue()
         {
-            int number = 123456789;
-            // long number2 = 123456789123123123;
+            GivenNumber(123456789);
+            GivenLimit(9, DigitSign.M);
+            ConvertedResultShouldBe("123,456,789");
+        }
 
-            var limitDigitLength = 9;
-            var maxDigitSign = DigitSign.M;
+        private void GivenNumber(int number)
+        {
+            _number = number;
+        }
 
-            var convertedResult = number.ToLimitCredit(limitDigitLength, maxDigitSign);
-            Assert.AreEqual("123,456,789", convertedResult);
+        private void GivenLimit(int limitDigitLength, DigitSign maxDigitSign)
+        {
+            _convertedResult = _number.ToLimitCredit(limitDigitLength, maxDigitSign);
+        }
+
+        private void ConvertedResultShouldBe(string result)
+        {
+            Assert.AreEqual(result, _convertedResult);
         }
     }
 }
