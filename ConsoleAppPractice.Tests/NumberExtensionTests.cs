@@ -12,7 +12,7 @@ namespace ConsoleAppPractice.Tests
         #region Limit length: 5, Max digit sign: K
 
         [Test]
-        public void NumberLengthLessThanLimitLengthMaxDigitSingIsK_ReturnFullValue()
+        public void NumberLengthLessThanLimitLengthMaxDigitSignIsK_ReturnFullValue()
         {
             GivenNumber(9999);
             GivenLimit(5, DigitSign.K);
@@ -20,7 +20,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthEqualLimitLengthMaxDigitSingIsK_ReturnFullValue()
+        public void NumberLengthEqualLimitLengthMaxDigitSignIsK_ReturnFullValue()
         {
             GivenNumber(99999);
             GivenLimit(5, DigitSign.K);
@@ -36,7 +36,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsK_Case1_ReturnAbbreviationValueWithK()
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSignIsK_Case1_ReturnAbbreviationValueWithK()
         {
             GivenNumber(1234567);
             GivenLimit(5, DigitSign.K);
@@ -44,7 +44,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsK_Case2_ReturnAbbreviationValueWithK()
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSignIsK_Case2_ReturnAbbreviationValueWithK()
         {
             GivenNumber(12345678);
             GivenLimit(5, DigitSign.K);
@@ -52,7 +52,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthOverLimitLengthAgainMaxDigitSingIsK_ReturnAbbreviationValueWithK()
+        public void NumberLengthOverLimitLengthAgainMaxDigitSignIsK_ReturnAbbreviationValueWithK()
         {
             GivenNumber(123456789);
             GivenLimit(5, DigitSign.K);
@@ -64,7 +64,7 @@ namespace ConsoleAppPractice.Tests
         #region Limit length: 5, Max digit sign: M
 
         [Test]
-        public void NumberLengthLessThanLimitLengthMaxDigitSingIsM_ReturnFullValue()
+        public void NumberLengthLessThanLimitLengthMaxDigitSignIsM_ReturnFullValue()
         {
             GivenNumber(9999);
             GivenLimit(5, DigitSign.M);
@@ -72,7 +72,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthEqualLimitLengthMaxDigitSingIsM_ReturnFullValue()
+        public void NumberLengthEqualLimitLengthMaxDigitSignIsM_ReturnFullValue()
         {
             GivenNumber(99999);
             GivenLimit(5, DigitSign.M);
@@ -80,7 +80,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsM_Case1_ReturnAbbreviationValueWithK()
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSignIsM_Case1_ReturnAbbreviationValueWithK()
         {
             GivenNumber(199999);
             GivenLimit(5, DigitSign.M);
@@ -88,7 +88,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsM_Case2_ReturnAbbreviationValueWithM()
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSignIsM_Case2_ReturnAbbreviationValueWithM()
         {
             GivenNumber(1234567);
             GivenLimit(5, DigitSign.M);
@@ -96,7 +96,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthOverLimitLengthAgainMaxDigitSingIsM_ReturnAbbreviationValueWithM()
+        public void NumberLengthOverLimitLengthAgainMaxDigitSignIsM_ReturnAbbreviationValueWithM()
         {
             GivenNumber(12345678);
             GivenLimit(5, DigitSign.M);
@@ -104,11 +104,19 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthOverLimitLengthThirdTimeMaxDigitSingIsM_ReturnAbbreviationValueWithM()
+        public void NumberLengthOverLimitLengthThirdTimeMaxDigitSignIsM_ReturnAbbreviationValueWithM()
         {
             GivenNumber(123456789);
             GivenLimit(5, DigitSign.M);
             ConvertedResultShouldBe("123M");
+        }
+
+        [Test]
+        public void NumberLengthOverLimitLengthFourthTimeMaxDigitSignIsM_ReturnAbbreviationValueWithM()
+        {
+            GivenNumber(123456789123);
+            GivenLimit(5, DigitSign.M);
+            ConvertedResultShouldBe("123,456M");
         }
 
         #endregion Limit length: 5, Max digit sign: M
