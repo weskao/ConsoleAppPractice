@@ -88,7 +88,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsM_Case2_ReturnAbbreviationValueWithK()
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsM_Case2_ReturnAbbreviationValueWithM()
         {
             GivenNumber(1234567);
             GivenLimit(5, DigitSign.M);
@@ -96,7 +96,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsM_ReturnAbbreviationValueWithK()
+        public void NumberLengthOverLimitLengthAgainMaxDigitSingIsM_ReturnAbbreviationValueWithM()
         {
             GivenNumber(12345678);
             GivenLimit(5, DigitSign.M);
