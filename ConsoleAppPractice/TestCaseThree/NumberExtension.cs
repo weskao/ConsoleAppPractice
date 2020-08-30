@@ -35,17 +35,25 @@ namespace ConsoleAppPractice.TestCaseThree
                 new DigitMapping(){Sign = DigitSign.K, DigitLength = 3}
             };
 
-            var minDigitMapping = digitMappings.Where(x =>
+            var step1MinDigitMapping = digitMappings.Where(x =>
             {
-                var lengthLoweThanMaxDigitSign = x.DigitLength <= (int)maxDigitSign;
-                return (valueLength - x.DigitLength) <= limitDigitLength && lengthLoweThanMaxDigitSign;
-            }).Aggregate((biggerDigitMapping, smallerDigitMapping) => (biggerDigitMapping.DigitLength > smallerDigitMapping.DigitLength ? smallerDigitMapping : null)); ;
+                var lengthLowerThanMaxDigitSign = x.DigitLength <= (int)maxDigitSign;
+                return (valueLength - x.DigitLength) <= limitDigitLength && lengthLowerThanMaxDigitSign;
+            }).Select(x => x);
 
-            if (minDigitMapping != null)
+            if (!step1MinDigitMapping.Any())
             {
-                var divisor = (long)Math.Pow(10, minDigitMapping.DigitLength);
+                var divisor = (long)Math.Pow(10, (int)maxDigitSign);
+                return string.Format("{0}{1}", (val / divisor).ToCredit(), maxDigitSign);
+            }
 
-                return string.Format("{0}{1}", (val / divisor).ToCredit(), minDigitMapping.Sign);
+            var step2MinDigitMapping = step1MinDigitMapping.Aggregate((biggerDigitMapping, smallerDigitMapping) => (biggerDigitMapping.DigitLength > smallerDigitMapping.DigitLength ? smallerDigitMapping : null)); ;
+
+            if (step2MinDigitMapping != null)
+            {
+                var divisor = (long)Math.Pow(10, step2MinDigitMapping.DigitLength);
+
+                return string.Format("{0}{1}", (val / divisor).ToCredit(), step2MinDigitMapping.Sign);
             }
             else
             {
