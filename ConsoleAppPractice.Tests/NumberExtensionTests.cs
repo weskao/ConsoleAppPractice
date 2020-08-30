@@ -12,7 +12,7 @@ namespace ConsoleAppPractice.Tests
         #region Limit length: 5, Max digit sign: K
 
         [Test]
-        public void NumberLengthLessThanLimitLength_ReturnFullValue()
+        public void NumberLengthLessThanLimitLengthMaxDigitSingIsK_ReturnFullValue()
         {
             GivenNumber(9999);
             GivenLimit(5, DigitSign.K);
@@ -20,7 +20,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthEqualLimitLength_ReturnFullValue()
+        public void NumberLengthEqualLimitLengthMaxDigitSingIsK_ReturnFullValue()
         {
             GivenNumber(99999);
             GivenLimit(5, DigitSign.K);
@@ -36,7 +36,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthGreaterThanLimitLength_Case2_ReturnAbbreviationValueWithK()
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsK_Case1_ReturnAbbreviationValueWithK()
         {
             GivenNumber(1234567);
             GivenLimit(5, DigitSign.K);
@@ -44,7 +44,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthGreaterThanLimitLength_ReturnAbbreviationValueWithK()
+        public void NumberLengthGreaterThanLimitLengthMaxDigitSingIsK_Case2_ReturnAbbreviationValueWithK()
         {
             GivenNumber(12345678);
             GivenLimit(5, DigitSign.K);
@@ -52,7 +52,7 @@ namespace ConsoleAppPractice.Tests
         }
 
         [Test]
-        public void NumberLengthOverLimitLengthAgain_AlwaysReturnK()
+        public void NumberLengthOverLimitLengthAgainMaxDigitSingIsK_ReturnAbbreviationValueWithK()
         {
             GivenNumber(123456789);
             GivenLimit(5, DigitSign.K);
