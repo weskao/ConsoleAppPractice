@@ -8,14 +8,14 @@ namespace ConsoleAppPractice.TestCaseThree
     public static class NumberExtension
     {
         public static string ToLimitCredit<T>(this T val, int limitDigitLength = 9,
-            DigitSign maxDigitSign = DigitSign.B, bool isOrderByAsc = false) where T : struct
+            DigitSign maxDigitSign = DigitSign.B) where T : struct
         {
             if (typeof(T) == typeof(int) || typeof(T) == typeof(long) || typeof(T) == typeof(double))
             {
                 var limit = Math.Pow(10, limitDigitLength);
                 var convertedValue = Convert.ToInt64(val);
 
-                return (convertedValue >= limit) ? convertedValue.ToShorterFloorNumber(limitDigitLength, maxDigitSign, isOrderByAsc) : convertedValue.ToCredit();
+                return (convertedValue >= limit) ? convertedValue.ToShorterFloorNumber(limitDigitLength, maxDigitSign) : convertedValue.ToCredit();
             }
 
             // Debug.LogWarning(string.Format("This type {0} is not support for {1} extension method", typeof(T),
@@ -24,7 +24,7 @@ namespace ConsoleAppPractice.TestCaseThree
             return "";
         }
 
-        private static string ToShorterFloorNumber(this long val, int limitDigitLength, DigitSign maxDigitSign, bool isOrderByAsc)
+        private static string ToShorterFloorNumber(this long val, int limitDigitLength, DigitSign maxDigitSign)
         {
             var valueLength = val.ToString().Length;
 
@@ -68,7 +68,7 @@ namespace ConsoleAppPractice.TestCaseThree
                 new DigitFormat(){Limit = Math.Pow(10, limitDigitLength), Value = Math.Pow(10, (int)DigitSign.K), Sign = DigitSign.K},
             };
 
-            foreach (var digitFormat in GetLowerOrEqualThanMaxDigitFormatList(maxDigitSign, isOrderByAsc, digitFormatList))
+            foreach (var digitFormat in GetLowerOrEqualThanMaxDigitFormatList(maxDigitSign, false, digitFormatList))
             {
                 if (limitDigitLength >= (int)digitFormat.Sign)
 
@@ -101,7 +101,7 @@ namespace ConsoleAppPractice.TestCaseThree
                 var limit = Math.Pow(10, limitDigitLength);
                 var convertedValue = Convert.ToInt64(val);
 
-                return (convertedValue >= limit) ? convertedValue.ToShorterFloorNumber(minDigitLength, maxDigitSign, isOrderByAsc) : convertedValue.ToCredit();
+                return (convertedValue >= limit) ? convertedValue.ToShorterFloorNumber(minDigitLength, maxDigitSign) : convertedValue.ToCredit();
             }
             else
             {
