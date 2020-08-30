@@ -7,7 +7,7 @@ namespace ConsoleAppPractice.TestCaseThree.Extension_code_by_Alomar
     {
         public static string ToLimitCreditFromAlomar(this object val,
             int limitDigitLength = 9,
-            ShortDigit.Type shortDigitType = ShortDigit.Type.M)
+            ShortDigit.AlomarDigitType shortDigitAlomarDigitType = ShortDigit.AlomarDigitType.M)
         {
             if (!(val is int || val is long || val is double))
             {
@@ -20,13 +20,13 @@ namespace ConsoleAppPractice.TestCaseThree.Extension_code_by_Alomar
             var limit = Math.Pow(10, limitDigitLength);
             var convertedValue = Convert.ToInt64(val);
 
-            return (convertedValue >= limit) ? convertedValue.ToShorterFloorNumber(shortDigitType) : convertedValue.ToCredit();
+            return (convertedValue >= limit) ? convertedValue.ToShorterFloorNumber(shortDigitAlomarDigitType) : convertedValue.ToCredit();
         }
 
-        public static string ToShorterFloorNumber(this long val, ShortDigit.Type shortDigitType)
+        public static string ToShorterFloorNumber(this long val, ShortDigit.AlomarDigitType shortDigitAlomarDigitType)
         {
             Parameters parameters;
-            ShortDigit.GetParameters(val, shortDigitType, out parameters);
+            ShortDigit.GetParameters(val, shortDigitAlomarDigitType, out parameters);
 
             var limit = Convert.ToInt64(Math.Pow(10, parameters.shortDigit));
 

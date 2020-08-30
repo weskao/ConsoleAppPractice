@@ -71,7 +71,7 @@ namespace ConsoleAppPractice.TestCaseThree
             // return val.ToCredit();
 
             // var shortDigit = maxDigitSignLength;
-            // // var sign = Enum.GetName(typeof(Type), maxDigitSignLength);
+            // // var sign = Enum.GetName(typeof(AlomarDigitType), maxDigitSignLength);
             //
             // int currentDigitLength;
             //
@@ -82,7 +82,7 @@ namespace ConsoleAppPractice.TestCaseThree
             //     if (val >= Math.Pow(10, currentDigitLength) && (int)maxDigitSignLength >= currentDigitLength)
             //     {
             //         shortDigit = currentDigitLength;
-            //         // sign = Enum.GetName(typeof(Type), currentDigitLength);
+            //         // sign = Enum.GetName(typeof(AlomarDigitType), currentDigitLength);
             //
             //         return string.Format("{0}{1}", (val / (long)Math.Pow(10, digitMappings[i].DigitLength)).ToCredit(), digitMappings[i].Sign);
             //     }
