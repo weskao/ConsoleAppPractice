@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace ConsoleAppPractice.Tests
 {
+    [TestFixture]
     public class NumberExtensionTests
     {
         private string _convertedResult;
