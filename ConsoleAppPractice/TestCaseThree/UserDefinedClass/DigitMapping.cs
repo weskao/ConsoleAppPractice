@@ -4,6 +4,6 @@ namespace ConsoleAppPractice.TestCaseThree.UserDefinedClass
     {
         public DigitSign Sign { get; set; }
 
-        public int DigitLength { get; set; }
+        public int DigitLength => (int)Sign;
     }
 }

@@ -7,7 +7,7 @@ namespace ConsoleAppPractice.TestCaseThree
 {
     public static class NumberExtension
     {
-        public static string ToLimitCredit<T>(this T val, int limitDigitLength = 9,
+        public static string ToLimitCredit<T>(this T val, int limitDigitLength,
             DigitSign maxDigitSign = DigitSign.B) where T : struct
         {
             if (typeof(T) == typeof(int) || typeof(T) == typeof(long) || typeof(T) == typeof(double))
@@ -30,30 +30,28 @@ namespace ConsoleAppPractice.TestCaseThree
 
             var digitMappings = new List<DigitMapping>()
             {
-                new DigitMapping(){Sign = DigitSign.B, DigitLength = 9},
-                new DigitMapping(){Sign = DigitSign.M, DigitLength = 6},
-                new DigitMapping(){Sign = DigitSign.K, DigitLength = 3}
+                new DigitMapping(){Sign = DigitSign.B},
+                new DigitMapping(){Sign = DigitSign.M},
+                new DigitMapping(){Sign = DigitSign.K}
             };
 
-            var step1MinDigitMapping = digitMappings.Where(x =>
+            var firstStepDigitMapping = digitMappings.Where(x =>
             {
                 var lengthLowerThanMaxDigitSign = x.DigitLength <= (int)maxDigitSign;
                 return (valueLength - x.DigitLength) <= limitDigitLength && lengthLowerThanMaxDigitSign;
             }).Select(x => x);
 
-            if (!step1MinDigitMapping.Any())
+            if (!firstStepDigitMapping.Any())
             {
                 var divisor = (long)Math.Pow(10, (int)maxDigitSign);
                 return string.Format("{0}{1}", (val / divisor).ToCredit(), maxDigitSign);
             }
 
-            var step2MinDigitMapping = step1MinDigitMapping.Aggregate((biggerDigitMapping, smallerDigitMapping) => (biggerDigitMapping.DigitLength > smallerDigitMapping.DigitLength ? smallerDigitMapping : null)); ;
+            var finalStepDigitMapping = firstStepDigitMapping.Aggregate((biggerDigitMapping, smallerDigitMapping) => (biggerDigitMapping.DigitLength > smallerDigitMapping.DigitLength ? smallerDigitMapping : null)); ;
 
-            if (step2MinDigitMapping != null)
+            if (finalStepDigitMapping != null)
             {
-                var divisor = (long)Math.Pow(10, step2MinDigitMapping.DigitLength);
-
-                return string.Format("{0}{1}", (val / divisor).ToCredit(), step2MinDigitMapping.Sign);
+                return string.Format("{0}{1}", (val / (long)Math.Pow(10, finalStepDigitMapping.DigitLength)).ToCredit(), finalStepDigitMapping.Sign);
             }
             else
             {
