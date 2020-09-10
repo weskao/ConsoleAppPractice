@@ -10,6 +10,13 @@ namespace ConsoleAppPractice.Tests
         private string _convertedResult;
         private long _number;
 
+        [SetUp]
+        public void Init()
+        {
+            _convertedResult = null;
+            _number = 0;
+        }
+
         #region Limit length: 5, Max digit sign: K
 
         [Test]
