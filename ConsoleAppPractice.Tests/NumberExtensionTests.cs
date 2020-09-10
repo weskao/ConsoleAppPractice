@@ -20,6 +20,14 @@ namespace ConsoleAppPractice.Tests
         #region Limit length: 5, Max digit sign: K
 
         [Test]
+        public void NumberIsZero_ReturnFullValue()
+        {
+            GivenNumber(0);
+            GivenLimit(5, DigitSign.K);
+            ConvertedResultShouldBe("0");
+        }
+
+        [Test]
         public void NumberLengthLessThanLimitLengthMaxDigitSignIsK_ReturnFullValue()
         {
             GivenNumber(9999);
